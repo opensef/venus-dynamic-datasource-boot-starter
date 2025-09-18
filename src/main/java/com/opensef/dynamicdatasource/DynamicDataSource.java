@@ -199,7 +199,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
             }
         }
         this.currentDatabaseKey = key;
-        logger.info("当前连接数据源为：{}", this.currentDatabaseKey);
+        logger.debug("当前连接数据源为：{}", this.currentDatabaseKey);
         return key;
     }
 

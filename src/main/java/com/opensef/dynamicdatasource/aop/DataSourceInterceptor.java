@@ -49,7 +49,7 @@ public class DataSourceInterceptor implements MethodInterceptor {
             throw new RuntimeException("Current dataSource is null");
         }
 
-        logger.info("方法信息：{}, 动态数据源名称：{}", method, dataSource.value());
+        logger.debug("方法信息：{}, 动态数据源名称：{}", method, dataSource.value());
         // 设置到动态数据源上下文中
         DynamicDataSourceContextHolder.putDataSource(dataSource.value());
 
