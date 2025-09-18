@@ -6,6 +6,7 @@ import com.opensef.dynamicdatasource.aop.DynamicDataSourceAnnotationAdvisor;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.aop.Advisor;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -15,6 +16,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Role;
 
 /**
  * 动态数据源配置，开启此配置，无论是否配置了多数据源，都会走自定义数据源配置方法，在DynamicDataSource里会自动切换
@@ -23,6 +25,7 @@ import org.springframework.context.annotation.Primary;
 @AutoConfigureOrder(-1)
 @AutoConfigureBefore({DataSourceAutoConfiguration.class})
 @EnableConfigurationProperties(DynamicDataSourceProperties.class)
+@Role(BeanDefinition.ROLE_INFRASTRUCTURE)
 public class DynamicDataSourceAutoConfiguration {
 
     @Primary
@@ -38,6 +41,7 @@ public class DynamicDataSourceAutoConfiguration {
     }
 
     @Bean
+    @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
     public Advisor dynamicDataSourceAnnotationAdvisor() {
         DataSourceInterceptor interceptor = new DataSourceInterceptor();
         DynamicDataSourceAnnotationAdvisor advisor = new DynamicDataSourceAnnotationAdvisor(interceptor, DataSource.class);

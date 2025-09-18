@@ -12,7 +12,7 @@
 
     <groupId>com.opensef</groupId>
     <artifactId>venus-dynamic-datasource-boot-starter</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 
     <name>venus-dynamic-datasource-boot-starter</name>
     <description>venus-dynamic-datasource-boot-starter</description>
